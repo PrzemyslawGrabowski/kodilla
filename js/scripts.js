@@ -11,4 +11,5 @@ function rysujChoinke(n) {
 			console.log(space, star)
 	}
 }
+
 rysujChoinke(16)
