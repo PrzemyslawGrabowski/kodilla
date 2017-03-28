@@ -1,4 +1,4 @@
-var text ="Świnki koszą trawę, unosząc się nad ziemią 15 centrymetrów, na czerwonych dywanach';
+var text ='Świnki koszą trawę, unosząc się nad ziemią 15 centrymetrów, na czerwonych dywanach';
 var animal = 'Zielone słonie';
 var animalUpperCased = animal.toUpperCase();
 var firstWord = text.split(' ');
