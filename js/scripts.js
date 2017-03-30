@@ -49,7 +49,7 @@ function setGamePoints() {
     playerPointsElem.innerHTML = player.score;
     computerPointsElem.innerHTML = computer.score;
 
-    endGame();
+    checkGameWinner();
     setGameElements();
 }
 
@@ -71,6 +71,8 @@ function getComputerPick() {
     return possiblePicks[Math.floor(Math.random()*3)];
 }
 
+
+
 function playerPick(playerPick) {
     var computerPick = getComputerPick();
     
@@ -84,30 +86,28 @@ function playerPick(playerPick) {
 function checkRoundWinner(playerPick, computerPick) {
   playerResultElem.innerHTML = computerResultElem.innerHTML = '';
 
-  var winnerIs = 'player';
-
-    if (playerPick == computerPick) {
-        winnerIs = 'noone'; 
-    } else if (
-        (computerPick == 'rock' &&  playerPick == 'scissors') ||
-        (computerPick == 'scissors' &&  playerPick == 'paper') ||
-        (computerPick == 'paper' &&  playerPick == 'rock')) {
-        
-        winnerIs = 'computer';
-
-    }
-
-    if (winnerIs == 'player') {
+var winnerIs = 'player';
+    if (winnerIs = 'player'){
         playerResultElem.innerHTML = "Wygrana!";
         player.score++;
-    } else if (winnerIs == 'computer') {
+    }
+
+    else if (
+        (computerPick == 'rock' &&  playerPick == 'scissors') ||
+        (computerPick == 'scissors' &&  playerPick == 'paper') ||
+        (computerPick == 'paper' &&  playerPick == 'rock')
+    ) { 
+        winnerIs = 'computer';
         computerResultElem.innerHTML = "Wygrana!";
         computer.score++;
+    } else if (playerPick == computerPick) {
+        winnerIs = 'noone';
     }
-    setGameElements();
+  setGameElements();
 }
 
-function endGame () {
+
+function checkGameWinner () {
     if (player.score == 10) {
         gameWinnerIs = 'player'; 
         alert("Koniec Gry. Wygral gracz " + player.name);
@@ -115,7 +115,6 @@ function endGame () {
         
 }   else if (computer.score == 10) {
         gameWinnerIs = 'computer';
-        gameState = 'ended';
         alert("Koniec Gry. Wygral komputer");
         gameState = 'ended';
     }
