@@ -1,6 +1,6 @@
-var allSpans = $("span");
-    allSpans.each(function(index, element) {
-    	$("span:even").css('color', 'red');
+var allSpansEven = $("span:even");
+    allSpansEven.each(function(index, element) {
+    	$(allSpansEven).css('color', 'red');
 });
 
 var paragraphs = $("p:even");
