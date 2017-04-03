@@ -1,7 +1,10 @@
+//var allSpansEven = $("span:even");
+//    allSpansEven.each(function(index, element) {
+//    	$(allSpansEven).css('color', 'red');
+//});
+
 var allSpansEven = $("span:even");
-    allSpansEven.each(function(index, element) {
-    	$(allSpansEven).css('color', 'red');
-});
+    $(allSpansEven).css('color', 'red');
 
 var paragraphs = $("p:even");
 	paragraphs.each(function(index, element) {
