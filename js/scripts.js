@@ -26,6 +26,7 @@ pickPaper.addEventListener('click', function() { playerPick('paper') });
 pickScissors.addEventListener('click', function() { playerPick('scissors') });
 newGameBtn.addEventListener('click', newGame);
 
+// funkcja elementów gry
 function setGameElements() {
   switch(gameState) {
     case 'started':
@@ -45,6 +46,7 @@ function setGameElements() {
 
 setGameElements();
 
+// funkcja dodawania punktów
 function setGamePoints() {
     playerPointsElem.innerHTML = player.score;
     computerPointsElem.innerHTML = computer.score;
@@ -53,6 +55,7 @@ function setGamePoints() {
     setGameElements();
 }
 
+//funkcja nowej gry
 function newGame() {
   player.name = prompt('Graczu, wpisz swoje imię', 'imię gracza');
   if (player.name) {
@@ -66,13 +69,13 @@ function newGame() {
 
 }
 
+// funkcja wyboru komputera
 function getComputerPick() {
     var possiblePicks = ['rock', 'paper', 'scissors'];
     return possiblePicks[Math.floor(Math.random()*3)];
 }
 
-
-
+// funkcja wyboru gracza
 function playerPick(playerPick) {
     var computerPick = getComputerPick();
     
@@ -83,10 +86,41 @@ function playerPick(playerPick) {
     setGamePoints();
 }    
 
+// funkcja sprawdzająca wynik rundy 
 function checkRoundWinner(playerPick, computerPick) {
   playerResultElem.innerHTML = computerResultElem.innerHTML = '';
+        
+    if (playerPick === computerPick) {
+        return ('');
 
-var winnerIs = 'player';
+    } else if (
+        (computerPick == 'rock' &&  playerPick == 'scissors') ||
+        (computerPick == 'scissors' &&  playerPick == 'paper') ||
+        (computerPick == 'paper' &&  playerPick == 'rock') 
+        ){
+
+        computerResultElem.innerHTML = "Wygrana!";
+                computer.score++;
+    } else {
+        playerResultElem.innerHTML = "Wygrana!";
+                player.score++;
+    }    
+}
+
+// funkcja sprawdzająca wynik gry
+function checkGameWinner () {
+    if (player.score === 10) {
+        alert("Koniec Gry. Wygral gracz " + player.name);
+        gameState = 'ended';
+    } 
+
+    if (computer.score === 10) {
+        alert("Koniec Gry. Wygral komputer");
+        gameState = 'ended';
+    }
+}
+
+/*var winnerIs = 'player';
     if (winnerIs = 'player'){
         playerResultElem.innerHTML = "Wygrana!";
         player.score++;
@@ -105,9 +139,9 @@ var winnerIs = 'player';
     }
   setGameElements();
 }
+*/
 
-
-function checkGameWinner () {
+/* function checkGameWinner () {
     if (player.score == 10) {
         gameWinnerIs = 'player'; 
         alert("Koniec Gry. Wygral gracz " + player.name);
@@ -119,5 +153,5 @@ function checkGameWinner () {
         gameState = 'ended';
     }
 } 
-
+*/
 
