@@ -1,24 +1,16 @@
-//var allSpansEven = $("span:even");
-//    allSpansEven.each(function(index, element) {
-//    	$(allSpansEven).css('color', 'red');
-//});
-
-//var allSpansEven = $("span:even");
-//    $(allSpansEven).css('color', 'red');
-
-var span = $("span");
-	span.each(function(index, element) {
-		if(index % 2 == 0) {
-		$(element).css('color', 'red');
+var carouselList = $("#carousel ul");
+	setInterval(changeSlideNext, 2000);
+	
+	function changeSlideNext() {
+		carouselList.animate({'marginLeft': -400}, 1500, moveFirstSlide);
 	};
-});
+	
+	function moveFirstSlide () {
+		var firstItem = carouselList.find("li:first"); // Czy te zmienne można deklarować na początku, 
+		var lastItem = carouselList.find("li:last");// czy trzeba w funkcji?
+		
+		lastItem.after(firstItem);
+		carouselList.css({marginLeft:0});
+	};
 
-var paragraphs = $("p:even");
-	paragraphs.each(function(index, element) {
-		var newButton = '<button class="btn" data-tmp="' + index + '">Click me</button>'
-		$(element).append(newButton)
-	});
-
-$("button").click(function() {
-	alert($(this).attr("data-tmp"));
-});
+	
