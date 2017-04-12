@@ -1,0 +1,105 @@
+/*
+??????? kolejnośc zapisu color: font-size: float: itp.
+??????? dopytać o rozciąganie contenera <--float.
+*/
+
+body {
+	background-color: #95a5a6;
+	background-image: url('https://images.pexels.com/photos/27665/pexels-photo-27665.jpg?w=1260&h=750&auto=compress&cs=tinysrgb');
+	background-size: cover;
+	background-attachment: fixed;
+
+	font-family: 'Open Sans', sans-serif;
+	text-align: center;
+	box-sizing: border-box;
+}
+
+h1 {
+	color: White;
+	margin: 50px 0 30px;
+	font-size: 60px;
+}
+
+h2 {
+	color: #34495e;
+	font-size: 30px;
+	text-align: left;
+}
+
+button {
+	background-color: #2980b9;
+	color: white;
+	font-size: 20px;
+	border: none;
+	padding: 10px;
+	outline: none;
+	margin: 0 20px;
+}
+
+.btn-delete-column, .btn-delete-card {
+	background-color: #c0392b;
+	color: white;
+}
+
+.btn-delete-card {
+	font-size: 10px;
+	margin: 0 0 0 15px;
+	align-self: center;
+}
+
+.create-column {
+	width: 200px;
+}
+
+.column-container {
+	width: 1200px;
+	margin: 30px auto;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.column {
+	width: 350px;
+	margin: 10px;
+	float: left;
+	order: 1px solid #3fb0ac;
+	background-color: #D2CDBB;
+	border-radius: 5px;
+	padding: 0 15px;
+}
+
+.column-card-list {
+	height: 40px;
+	padding: 0;
+}
+
+.card {
+	list-style-type: none;
+	margin: 10px auto;
+	width: 90%;
+	padding: 5px 15px;
+	order: 1px solid #95a5a6;
+	border-radius: 5px;
+	background-color: #fffefc;
+	float: left;
+	display: flex;
+}
+
+.card-description {
+	color: black;
+	font-size: 20px;
+	width: 90%;
+	border: 1px dotted darkgray;
+	float: left;
+}
+
+
+.card-placeholder {
+	border: 2px dotted #f76e59 ;
+	height: 200px;
+	width: 100%;
+	list-style-type: none;
+}
+
