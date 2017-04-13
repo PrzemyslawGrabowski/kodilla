@@ -28,7 +28,29 @@
 			});
 
 			$columnAddCard.click(function() { // zdarzenie na click dodania karty
-				self.addCard(new Card(prompt('Wpisz nazwę karty')));
+				
+				var cardName = prompt('Wpisz nazwę karty');
+				if (cardName === null) {
+					return;
+				} 
+				else if (cardName === ''){ // if prompt -->  empty
+				var cardName = prompt('Proszę wpisz nazwę karty') //??????????? deklaracja zmiennej
+						if (cardName === '') { // if prompt -->  empty
+							alert('Nazwa karty jest wymagana!')
+							return;
+						}
+						else if (cardName === null) { //if prompt --> cancel
+							return;
+						}
+						else { // prompt == ok --> creating a Card
+							self.addCard(new Card(cardName));
+						};
+
+				} else {
+					self.addCard(new Card(cardName));
+				}
+
+
 			});
 		//Konstruowanie elementów kolumny
 			$column.append($columnTitle)
@@ -100,11 +122,30 @@
 	// Funkcja do tworzenia kolumn
 	$('.create-column')
 		.click(function(){
-			var name = prompt('Wpisz nazwę kolumny');
-			var column = new Column(name);
-			board.addColumn(column);
+			var columnName = prompt('Wpisz nazwę kolumny');
+			if (columnName === null) { //if prompt --> cancel
+				return;
+			} else if (columnName === ''){ // if prompt -->  empty
+				var columnName = prompt('Proszę wpisz nazwę kolumny'); //??????????? deklaracja zmiennej
+				if (columnName === '') { // if prompt -->  empty
+					alert('Nazwa kolumny jest wymagana!')
+					return;
+				}
+				else if (columnName === null) { //if prompt --> cancel
+					return;
+				}
+				else { // prompt == ok --> creating a column
+					var column = new Column(columnName);
+					board.addColumn(column);
+				}
+			} else { // prompt == ok --> creating a column
+				var column = new Column(columnName);
+				board.addColumn(column);
+			}
+
+			
 		});
-	
+	 
 
 	//DOMYŚLNE ELEMENTY
 	// Tworzenie kolumn
