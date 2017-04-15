@@ -1,4 +1,3 @@
-//$(function() { //Po co kodilla każe to robić skoro, skrypty są podlinkowane na końcu?
 	function randomString() {
 		var chars = '0123456789abcdefghiklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXTZ';
 		var str = '';
@@ -8,7 +7,6 @@
 		return str;
 	}
 
-	
 	function Column(name) { // klasa Column
 		var self = this; //????????? tworzenie zmniennej, by mieć dostęp do this? vide utrata konetentu
 		
@@ -28,30 +26,16 @@
 			});
 
 			$columnAddCard.click(function() { // zdarzenie na click dodania karty
-				
-				var cardName = prompt('Wpisz nazwę karty');
-				if (cardName === null) {
-					return;
-				} 
-				else if (cardName === ''){ // if prompt -->  empty
-				var cardName = prompt('Proszę wpisz nazwę karty') //??????????? deklaracja zmiennej
-						if (cardName === '') { // if prompt -->  empty
-							alert('Nazwa karty jest wymagana!')
-							return;
-						}
-						else if (cardName === null) { //if prompt --> cancel
-							return;
-						}
-						else { // prompt == ok --> creating a Card
-							self.addCard(new Card(cardName));
-						};
-
-				} else {
+				// Nowa karta
+				var cardName = validate({
+					firstWarning: 'Wpisz nazwę karty',
+					secondWarning: 'Nazwa karty jest wymagana! Proszę wpisz nazwę karty'
+				});
+				if (cardName) {
 					self.addCard(new Card(cardName));
 				}
-
-
 			});
+
 		//Konstruowanie elementów kolumny
 			$column.append($columnTitle)
 					.append($columnDelete)
@@ -110,6 +94,17 @@
 		},
 		$element: $('#board .column-container')
 	}
+	// funkcja sprawdzająca wypełnienie prompt
+	function validate(config) {
+		var cardName = prompt(config.firstWarning);
+		if (cardName === null) {
+			return;
+		}
+		while (cardName === '') {
+			cardName = prompt(config.secondWarning);
+		}
+		return cardName
+	}
 
 	// Funkacja drag'n'drop
 	function initSortable() {
@@ -122,31 +117,21 @@
 	// Funkcja do tworzenia kolumn
 	$('.create-column')
 		.click(function(){
-			var columnName = prompt('Wpisz nazwę kolumny');
-			if (columnName === null) { //if prompt --> cancel
-				return;
-			} else if (columnName === ''){ // if prompt -->  empty
-				var columnName = prompt('Proszę wpisz nazwę kolumny'); //??????????? deklaracja zmiennej
-				if (columnName === '') { // if prompt -->  empty
-					alert('Nazwa kolumny jest wymagana!')
-					return;
-				}
-				else if (columnName === null) { //if prompt --> cancel
-					return;
-				}
-				else { // prompt == ok --> creating a column
-					var column = new Column(columnName);
-					board.addColumn(column);
-				}
-			} else { // prompt == ok --> creating a column
-				var column = new Column(columnName);
+			// ewentualnie 2 sposób przy większych ilościach.
+			// var = config = {
+			//	firstWarning: 'Wpisz nazwę kolumny',
+			//	secondWarning: 'Nazwa kolumny jest wymagana! Proszę wpisz nazwę kolumny'
+			//}
+			var columnName = validate({
+				firstWarning: 'Wpisz nazwę kolumny',
+				secondWarning: 'Nazwa kolumny jest wymagana! Proszę wpisz nazwę kolumny'
+			});
+			if (columnName) {
+				var column  = new Column(columnName);
 				board.addColumn(column);
 			}
-
-			
 		});
 	 
-
 	//DOMYŚLNE ELEMENTY
 	// Tworzenie kolumn
 	var todoColumn = new Column('Do zrobienia');
@@ -170,4 +155,3 @@
 	todoColumn.addCard(card4); // ???? Jak skrócić ten zapis? Dlaczego cała tablica znika przy ujęciu todoColumn w klamrowe nawiasy?
 	doingColumn.addCard(card2);
 
-//})
