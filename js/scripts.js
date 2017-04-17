@@ -5,6 +5,7 @@ var quoteUrl = "http://api.forismatic.com/api/1.0/?method=getQuote&key=867576&fo
 function getQuote() {
 	$.getJSON(quoteUrl, createTweet);
 };
+
 function createTweet(input) {
 	if (!input.quoteAuthor.length) {
 		input.quoteAuthor = "Unknown author";
@@ -20,6 +21,7 @@ function createTweet(input) {
 		$('.tweet').attr('href', tweet);
 	}	
 };
+
 $(document).ready(function() {
 	getQuote();
 	$('.trigger').click(function() {
