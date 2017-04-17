@@ -1,0 +1,36 @@
+body {
+	margin-top: 100px;
+	background-color: #3F51B5;
+
+}
+
+.flex-box {
+	display: flex;
+	flex-wrap: wrap;
+	width: 400px;
+	
+}
+.joke-box {
+	margin-top: 20px;
+	border: 1px solid #607D8B;;
+	border-radius: 5px;
+	min-width: 400px;
+	padding: 10px;
+	font-size: 2rem;
+	color: #757575;
+	background-color: #FFFFFF;
+}
+.btn {
+	font-size: 3rem;
+	
+    background-color: #C5CAE9;
+    color: #FFFfFF;
+}
+.btn:focus {
+	outline: none;
+	color: #FFFfFF;
+}
+.btn:hover {
+	color: #3F51B5;
+}
+
