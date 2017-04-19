@@ -1,12 +1,4 @@
-//Chyba to wszystko co mogę zrobić. Chciałem się pobawić w wyświetlenie jak w zadaniu dla chętnych, ale chyba to nie jest do zrobinia
-//na tym etapie kształcenia, albo zajęłoby mi to kilka dni. Bo nie wiem jak wyświetlać oddzielnie każde państwo i jak wyświetlić "key" z JSON
-//W ogóle to mają błąd bo w wersji v1 nie ma możliwości wyświetlenia flagi...
-
 var url = 'https://restcountries.eu/rest/v2/name/';
-var countriesList = $('#countries');
-var countriesCapital = $('#capital');
-var countriesCode = $('#alpha2Code');
-var countriesTimeZone = $('#timeZone') 
 
 $('#search').click(searchCountries);
 
@@ -21,17 +13,34 @@ function searchCountries() {
 }
 
 function showCountriesList(resp) {
-	countriesList.empty();
-	countriesCapital.empty();
-	countriesCode.empty();
-	countriesTimeZone.empty();
+	var createdTable = createNewTable();
+
 	resp.forEach(function(item) {
-		$('<img>').attr('src', item.flag).addClass('img').appendTo(countriesList);
-		$('<th>').text(item.name).appendTo(countriesList);
-		$('<td>').text(item.capital).appendTo(countriesCapital);
-		$('<td>').text(item.alpha2Code).appendTo(countriesCode);
-		$('<td>').text(item.timezones).appendTo(countriesTimeZone);
+		var row = document.createElement('tr');
+		row.innerHTML = `
+			<td><img style="width: 100px; height: 60px; object-fit: cover" src=${item.flag}></img></td>
+			<td>${item.name}</td>
+			<td>${item.capital}</td>
+			<td>${item.alpha2Code}</td>
+			<td>${item.timezones}</td>
+		`;
+		createdTable.appendChild(row);
 	});
+	
 }
 
-
+function createNewTable() {
+	var table = document.getElementsByTagName('table')[0] || document.createElement('table');
+	var template = `
+		<tr>
+			<td>Flag</td>
+			<td>Country name</td>
+			<td>Capital</td>
+			<td>Code</td>
+			<td>Time zone</td>
+		</tr>
+	`;
+	table.innerHTML = template;
+	document.body.appendChild(table);
+	return table;
+}
