@@ -1,5 +1,5 @@
 function Column(id, name) { // klasa Column
-	var self = this; //????????? tworzenie zmniennej, by mieć dostęp do this? vide utrata konetentu
+	var self = this; 
 		
 	this.id = id;
 	this.name = name;
@@ -17,7 +17,7 @@ function Column(id, name) { // klasa Column
 		});
 
 		$columnAddCard.click(function() { // zdarzenie na click dodania karty
-			// Nowa karta
+		// Nowa karta
 			var cardName = validate({
 				firstWarning: 'Wpisz nazwę karty',
 				secondWarning: 'Nazwa karty jest wymagana! Proszę wpisz nazwę karty'
@@ -34,7 +34,7 @@ function Column(id, name) { // klasa Column
 				},
 				success: function(response) {
 				var card = new Card(response.id, cardName);
-				self.addCard(cardName);
+				self.addCard(card);
 				}
 			});
 		});
@@ -60,7 +60,7 @@ Column.prototype = {
 			url: baseUrl + '/column/' + self.id,
 			method: 'DELETE',
 			success: function(response){
-				self.element.remove();
+				self.$element.remove();
 			}
 		});
 	}

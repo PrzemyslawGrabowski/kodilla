@@ -8,7 +8,7 @@ function Card(id, name) {
 	// Elementy składowe kart
 	function createCard() {
 		var $card = $('<li>').addClass('card');
-		var $cardDescription = $('<p>').addClass('card-description').text(self.name); //????????? dlaczego traci kontent
+		var $cardDescription = $('<p>').addClass('card-description').text(self.name);
 		var $cardDelete = $('<button>').addClass('btn-delete-card').text('X');
 	// Przypięcie zdarzeń
 	$cardDelete.click(function(){
@@ -30,7 +30,7 @@ Card.prototype = {
 		url: baseUrl + '/card/' + self.id,
 		method: 'DELETE',
 		success: function(){
-			self.element.remove();
+			self.$element.remove();
 		}
 	});
 	}
