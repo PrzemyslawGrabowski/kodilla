@@ -6,7 +6,7 @@ button.addEventListener('click', function(){ //kliknięcie button -> generowanie
 	getJoke();
 });
 
-document.onload = getJoke(); // załafowanie storny -> generowanie dowcipu
+document.onload = getJoke(); // załadowanie storny -> generowanie dowcipu // do wywalenie i poprawy
 
 function getJoke() {
 	var xhr = new XMLHttpRequest(); //xht skrót od XMLHttpRequest
